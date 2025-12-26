@@ -3,9 +3,6 @@ import plotly.graph_objects as go
 import numpy as np
 import pandas as pd
 
-# ==========================================
-# 1. CONFIGURATION & SETUP
-# ==========================================
 st.set_page_config(layout="wide", page_title="Advanced Solar System", page_icon="🪐")
 
 # CSS to force a dark background for the true 'Space' feel
@@ -17,11 +14,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ==========================================
-# 2. DATA ENGINE (The "Physics" & Stats)
-# ==========================================
-# Note: Visual Distances are scaled logarithmically so you can see everything.
-# Real Distances (AU) are stored for data display.
 system_data = {
     "Sun": {
         "type": "Star", "radius": 8, "dist": 0, "speed": 0, "color": "#FDB813",
@@ -66,10 +58,6 @@ system_data = {
         "real_stats": {"Mass": "1.024 × 10^26 kg", "Orbit Period": "165 years", "Moons": 14}
     }
 }
-
-# ==========================================
-# 3. MATHEMATICAL GENERATORS
-# ==========================================
 
 def get_sphere_mesh(size, center_x, center_y, center_z, color):
     """Creates a 3D sphere mesh at a specific coordinate"""
@@ -124,10 +112,6 @@ def create_starfield(num_stars=500):
         hoverinfo='none', showlegend=False
     )
 
-# ==========================================
-# 4. APP LOGIC & LAYOUT
-# ==========================================
-
 # Sidebar Controls
 st.sidebar.title("🚀 Flight Control")
 time_value = st.sidebar.slider("Time (Earth Years)", 0.0, 100.0, 0.0, 0.5)
@@ -144,7 +128,6 @@ st.sidebar.caption(p_data['type'])
 for k, v in p_data['real_stats'].items():
     st.sidebar.text(f"{k}: {v}")
 
-# --- MAIN PLOT CONSTRUCTION ---
 fig = go.Figure()
 
 # 1. Add Starfield
@@ -235,4 +218,5 @@ st.markdown("""
 * **Scale:** Distances and sizes are **logarithmically scaled**. If real scales were used, the planets would be microscopic dots compared to the orbit distances.
 * **Time:** Use the slider in the sidebar to move the planets forward in time.
 * **Interaction:** You can **Zoom**, **Pan**, and **Rotate** the 3D model with your mouse.
+
 """)
